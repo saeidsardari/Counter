@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <link href="style.css" rel="stylesheet" />
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <h1> JavaScript Counter </h1>  
+        <p id="description">
+          This project is written with JavaScript
+        </p>
+
+        <div id="counter">
+            0
+        </div>
+        <div id="buttons">
+            <button onclick="start()" type="button" class="start">
+                Start
+            </button>
+            <button disabled onclick="pause()" type="button" class="pause">
+                Pause
+            </button>
+        </div>
+    </body>
+</html>
+
+
+
+body {
+    background-color: rgb(157, 157, 255);
+    text-align: center;
+    font-family: monospace;
+    outline: 0;
+}
+#counter {
+    font-size: 30px;
+    margin: 10px 0;
+}
+#buttons {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+#buttons button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    outline: 0;
+    transition-duration: 400ms;
+}
+#buttons button:hover {
+    box-shadow: 1px 1px gray;
+}
+#buttons button.start {
+    background-color: cadetblue;
+}
+#buttons button.start:disabled {
+    background-color: gray;
+}
+#buttons button.pause:disabled {
+    background-color: gray;
+}
+#buttons button.pause {
+    background-color: rgb(238, 92, 92);
+}
+
+
+
+
+var count = 0;
+var countInterval;
+
+var start = function() {
+    countInterval = setInterval(function(){
+        count += 1
+        document.getElementById('counter').innerHTML = count
+        document.getElementsByClassName('start')[0].disabled = true
+        document.getElementsByClassName('pause')[0].disabled = false
+    },1000)
+}
+
+var pause = function() {
+    clearInterval(countInterval)
+    document.getElementsByClassName('start')[0].disabled = false
+    document.getElementsByClassName('pause')[0].disabled = true
+}
+
